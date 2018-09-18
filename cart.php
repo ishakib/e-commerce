@@ -8,82 +8,40 @@
 			    	<h2>Your Cart</h2>
 						<table class="tblone">
 							<tr>
-								<th width="20%">Product Name</th>
-								<th width="10%">Image</th>
+								<th width="5%">SL</th>
+								<th width="25%">Product Name</th>
+								<th width="20%">Image</th>
 								<th width="15%">Price</th>
-								<th width="25%">Quantity</th>
-								<th width="20%">Total Price</th>
+								<th width="15%">Quantity</th>
+								<th width="10%">Total Price</th>
 								<th width="10%">Action</th>
 							</tr>
+
+							<?php
+								$getpd = $ct->getAllCartProduct();
+								if ($getpd) {
+									$totalprice = 0;
+									while ($result = $getpd->fetch_assoc()) {	
+										$totalprice = $result['price']*$result['quantity'];
+
+							 ?>	
 							<tr>
-								<td>Product Title</td>
-								<td><img src="images/new-pic3.jpg" alt=""/></td>
-								<td>Tk. 20000</td>
+								<td><?php echo $result['cartId']; ?></td>
+								<td><?php echo $result['productName']; ?></td>
+								<td><img src="admin/<?php echo $result['image']; ?>" alt=""/></td>
+								<td>BDT: <?php echo $result['price']; ?></td>
 								<td>
 									<form action="" method="post">
-										<input type="number" name="" value="1"/>
+										<input type="number" name="" value="<?php echo $result['quantity']; ?>"/>
 										<input type="submit" name="submit" value="Update"/>
 									</form>
 								</td>
-								<td>Tk. 40000</td>
+								<td>BDT: <?php echo $totalprice; ?></td>
 								<td><a href="">X</a></td>
 							</tr>
 							
-							<tr>
-								<td>Product Title</td>
-								<td><img src="images/new-pic3.jpg" alt=""/></td>
-								<td>Tk. 20000</td>
-								<td>
-									<form action="" method="post">
-										<input type="number" name="" value="1"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
-								</td>
-								<td>Tk. 40000</td>
-								<td><a href="">X</a></td>
-							</tr>
-							
-							<tr>
-								<td>Product Title</td>
-								<td><img src="images/new-pic3.jpg" alt=""/></td>
-								<td>Tk. 20000</td>
-								<td>
-									<form action="" method="post">
-										<input type="number" name="" value="1"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
-								</td>
-								<td>Tk. 40000</td>
-								<td><a href="">X</a></td>
-							</tr>
-							<tr>
-								<td>Product Title</td>
-								<td><img src="images/new-pic3.jpg" alt=""/></td>
-								<td>Tk. 20000</td>
-								<td>
-									<form action="" method="post">
-										<input type="number" name="" value="1"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
-								</td>
-								<td>Tk. 40000</td>
-								<td><a href="">X</a></td>
-							</tr>
-							
-							<tr>
-								<td>Product Title</td>
-								<td><img src="images/new-pic3.jpg" alt=""/></td>
-								<td>Tk. 20000</td>
-								<td>
-									<form action="" method="post">
-										<input type="number" name="" value="1"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
-								</td>
-								<td>Tk. 40000</td>
-								<td><a href="">X</a></td>
-							</tr>
-							
+						<?php } } ?>	
+
 						</table>
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
