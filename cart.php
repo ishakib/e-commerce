@@ -1,11 +1,27 @@
 <?php include 'inc/header.php'; ?>
 
+<?php  	
+	if(isset($_GET['delcart'])){
+	
+		$id 		= $_GET['delcart'];
+			
+		$delCart 	= $ct->delCartrById($id);
+	}
+?>
+
 
 <div class="main">
     <div class="content">
     	<div class="cartoption">		
 			<div class="cartpage">
 			    	<h2>Your Cart</h2>
+
+            <?php  
+            	
+            	if(isset($delCat)){
+            		echo $delCat; 
+            	}
+            ?>  
 						<table class="tblone">
 							<tr>
 								<th width="5%">SL</th>
@@ -19,14 +35,18 @@
 
 							<?php
 								$getpd = $ct->getAllCartProduct();
-								if ($getpd) {
+								if ($getpd) {									
+									$i=0;
 									$totalprice = 0;
+									$vat = 0;
+									$subTotal = 0;
+									$gTotal = 0;
 									while ($result = $getpd->fetch_assoc()) {	
-										$totalprice = $result['price']*$result['quantity'];
-
+										$i++;
+										
 							 ?>	
 							<tr>
-								<td><?php echo $result['cartId']; ?></td>
+								<td><?php echo $i; ?></td>
 								<td><?php echo $result['productName']; ?></td>
 								<td><img src="admin/<?php echo $result['image']; ?>" alt=""/></td>
 								<td>BDT: <?php echo $result['price']; ?></td>
@@ -36,9 +56,20 @@
 										<input type="submit" name="submit" value="Update"/>
 									</form>
 								</td>
-								<td>BDT: <?php echo $totalprice; ?></td>
-								<td><a href="">X</a></td>
+								<td>BDT: <?php 
+												$totalprice = $result['price']*$result['quantity'];
+
+												echo $totalprice; 
+										 ?>
+										 	
+								</td>
+								<td><a onclick ="return confirm('Are you sure to delete!')" href="?delcart=<?php echo $result['cartId'];?>">X</a></td>
 							</tr>
+
+							<?php 
+									$subTotal = $subTotal+$totalprice;
+
+							?>
 							
 						<?php } } ?>	
 
@@ -46,15 +77,25 @@
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
 								<th>Sub Total : </th>
-								<td>TK. 210000</td>
+								<td>BDT: <?php echo $subTotal; ?> /=</td>
 							</tr>
 							<tr>
-								<th>VAT : </th>
-								<td>TK. 31500</td>
+								<th>VAT : 10% </th>
+								<td>BDT: 
+									<?php 
+										$vat = $subTotal*0.1;
+										echo $vat;
+									?>
+								/=</td>
 							</tr>
 							<tr>
 								<th>Grand Total :</th>
-								<td>TK. 241500 </td>
+								<td>BDT:
+									<?php 
+											$gTotal = $subTotal+$vat;
+											echo $gTotal;
+									?>
+								/=</td>
 							</tr>
 					   </table>
 					</div>

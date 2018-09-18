@@ -58,6 +58,21 @@ Class Cart{
 
 		}
 
+		public function delCartrById($id){
+
+			$query = " DELETE FROM tbl_cart WHERE cartID = '$id' ";
+			$deldata = $this->db->delete($query);
+			
+				if ($deldata) {
+					$msg	= "<span class= 'success'> Cart Deleted Successfully. </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'> Cart Not Deleted !. </span>" ;
+					return $msg;
+			}
+
+		}
+
 
 }
 
