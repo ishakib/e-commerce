@@ -33,8 +33,15 @@ Class Cart{
 			$price 			= $result['price'];
 			$image 			= $result['image'];
 
+			$chkquery 		= "SELECT * FROM tbl_cart WHERE productId = '$productId' AND sId = '$sId' ";
+			$chkduplcart 	= $this->db->select($chkquery);
 
-			$query = " INSERT INTO 
+			if ($chkduplcart) {
+				$msg = "Product Already Added In Cart! ";
+				return $msg;
+			}else{
+
+				$query = " INSERT INTO 
 							tbl_cart(sId,productId,productName,price,quantity,image) 
 							VALUES('$sId','$productId','$productName','$price','$quantity','$image')";
 
@@ -45,13 +52,17 @@ Class Cart{
 						}else{
 							header("Location:404.php");
 						}
+			}
+
+
+
+			
 
 		}
 
 		public function getAllCartProduct(){
 
 			$sId 	= session_id();
-
 			$query	= " SELECT * FROM 	tbl_cart WHERE sId = '$sId'";
 			$result = $this->db->select($query);
 			return $result;
@@ -69,9 +80,40 @@ Class Cart{
 				}else{
 					$msg	= "<span class= 'error'> Cart Not Deleted !. </span>" ;
 					return $msg;
-			}
+				}
 
 		}
+
+
+		public function updateCartQty($cartId, $quantity){
+
+			$cartId 	= $this->fm->validation($cartId);
+			$quantity 	= $this->fm->validation($quantity);
+			$cartId 	= mysqli_real_escape_string($this->db->link,$cartId);
+			$quantity 	= mysqli_real_escape_string($this->db->link,$quantity);
+			
+			$query = " 
+						UPDATE tbl_cart
+						SET 						
+						quantity = '$quantity'
+						
+						WHERE						
+						cartId = '$cartId'
+					 ";
+
+			$updateCartQty = $this->db->update($query);		
+			 
+			if ($updateCartQty) {
+					$msg	= "<span class= 'success'> Cart Quantity Updated. </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'> Cart Quantity Not Updated. !. </span>" ;
+					return $msg;
+				}		 
+		}
+
+
+		
 
 
 }

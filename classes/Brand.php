@@ -93,7 +93,7 @@ Class Brand{
 						
 						WHERE
 						
-						brandID = '$id'
+						brandId = '$id'
 
 					 ";
 

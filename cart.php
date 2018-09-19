@@ -2,11 +2,16 @@
 
 <?php  	
 	if(isset($_GET['delcart'])){
-	
-		$id 		= $_GET['delcart'];
-			
+		$id 		= $_GET['delcart'];		
 		$delCart 	= $ct->delCartrById($id);
 	}
+?>
+<?php
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$cartId 		= $_POST['cartId'];
+			$quantity 		= $_POST['quantity'];
+			$updateCartQty 	= $ct->updateCartQty($cartId, $quantity);
+		}	 
 ?>
 
 
@@ -18,9 +23,15 @@
 
             <?php  
             	
-            	if(isset($delCat)){
-            		echo $delCat; 
+            	if(isset($updateCartQty)){
+            		echo $updateCartQty; 
             	}
+            ?>
+            <?php	
+            	if(isset($delCart)){
+            		echo $delCart; 
+            	}
+
             ?>  
 						<table class="tblone">
 							<tr>
@@ -35,12 +46,14 @@
 
 							<?php
 								$getpd = $ct->getAllCartProduct();
-								if ($getpd) {									
-									$i=0;
+
 									$totalprice = 0;
 									$vat = 0;
 									$subTotal = 0;
 									$gTotal = 0;
+
+								if ($getpd) {									
+									$i=0;
 									while ($result = $getpd->fetch_assoc()) {	
 										$i++;
 										
@@ -52,7 +65,9 @@
 								<td>BDT: <?php echo $result['price']; ?></td>
 								<td>
 									<form action="" method="post">
-										<input type="number" name="" value="<?php echo $result['quantity']; ?>"/>
+										<input type="hidden" name="cartId" value="<?php echo $result['cartId']; ?>"/>										
+
+										<input type="number" name="quantity" value="<?php echo $result['quantity']; ?>"/>
 										<input type="submit" name="submit" value="Update"/>
 									</form>
 								</td>
@@ -74,30 +89,40 @@
 						<?php } } ?>	
 
 						</table>
-						<table style="float:right;text-align:left;" width="40%">
+						<?php
+							$getData = $ct->getAllCartProduct();
+							if ($getData) {
+						?>
+
+						<table class="tbltwo">
 							<tr>
 								<th>Sub Total : </th>
 								<td>BDT: <?php echo $subTotal; ?> /=</td>
 							</tr>
 							<tr>
-								<th>VAT : 10% </th>
-								<td>BDT: 
-									<?php 
-										$vat = $subTotal*0.1;
-										echo $vat;
-									?>
+								<th>VAT 10% :</th>
+								<td>BDT: <?php 
+											$vat = $subTotal*0.1;
+											echo $vat;
+										?>
 								/=</td>
 							</tr>
-							<tr>
+							<tr style="background: #000000;color: #fff;font-size: 20px;">
 								<th>Grand Total :</th>
 								<td>BDT:
 									<?php 
 											$gTotal = $subTotal+$vat;
 											echo $gTotal;
+											Session::set("gTotal",$gTotal);
 									?>
 								/=</td>
 							</tr>
+
+
 					   </table>
+					<?php }else{
+								echo "Cart is empty!! Please show now."; 
+					} ?>
 					</div>
 					<div class="shopping">
 						<div class="shopleft">

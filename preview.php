@@ -13,8 +13,8 @@
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			$quantity = $_POST['quantity'];
-			$addCart = $ct->addToCart($quantity, $id);
+			$quantity 	= $_POST['quantity'];
+			$addCart 	= $ct->addToCart($quantity, $id);
 		}	
 
 
@@ -50,8 +50,16 @@
 					<form action="" method="post">
 						<input type="number" class="buyfield" name="quantity" value="1"/>
 						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
-					</form>				
+					</form>								
 				</div>
+						<br>
+						<span style="color: red; font-size: 20px; padding:10px;">
+							<?php 
+								if (isset($addCart)) {
+							 		echo $addCart;
+							 	} 
+							?>		
+						</span>
 			</div>
 			<div class="product-desc">
 			<h2>Product Details</h2>
