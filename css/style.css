@@ -34,18 +34,19 @@ body{
 .header{
 	background:#FFF;
 }
-.header_top{
-	padding:20px 0;
+.header_top {
+    padding: 10px 0;
 }
-.logo{
-	float:left;
-	width:15%;
+.logo {
+    float: left;
+    width: 25%;
+    margin-top: -16px;
 }
 /**** Header Top Right ****/
-.header_top_right{
-	float:left;
-	width:67%;
-	margin-top:35px;
+.header_top_right {
+    float: left;
+    width: 85%;
+    margin-top: 8px;
 }
 .search_box{
 	float:left;

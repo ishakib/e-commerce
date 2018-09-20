@@ -287,6 +287,41 @@ Class Product{
 		}
 
 
+		public function getNewAsus(){
+
+			$query	= " SELECT * FROM tbl_product WHERE brandId = '8' ORDER BY productId DESC LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
+
+
+		public function getNewSamsung(){
+
+			$query	= " SELECT * FROM 	tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
+
+
+		public function getNewNikon(){
+
+			$query	= " SELECT * FROM 	tbl_product WHERE brandId = '16' ORDER BY productId DESC LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
+
+
+		public function getNewCanon(){
+
+			$query	= " SELECT * FROM 	tbl_product WHERE brandId = '15' ORDER BY productId DESC LIMIT 1";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
+
 
 
 }
