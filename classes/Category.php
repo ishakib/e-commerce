@@ -124,6 +124,14 @@ Class Category{
 			}
 
 		}
+		public function getCatNameById($id){
+
+			$query	= " SELECT catName FROM tbl_category WHERE catId = '$id'";
+			$result = $this->db->select($query);
+			return $result;
+
+		}
+
 
 }
 

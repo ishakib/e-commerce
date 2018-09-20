@@ -118,7 +118,6 @@ Class Product{
 		}
 
 
-
 		public function productUpdate($data,$file,$id){
 
 			$productName 	= $this->fm->validation($data['productName']);
@@ -321,6 +320,16 @@ Class Product{
 			return $result;
 
 		}
+
+		public function getProductByCat($id){
+
+			$query	= " SELECT * FROM 	tbl_product WHERE catId = '$id' ORDER BY productId ";
+			$result = $this->db->select($query);
+			return $result;
+		}
+
+
+	
 
 
 
