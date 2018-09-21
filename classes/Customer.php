@@ -39,20 +39,24 @@ Class Customer{
 			$email 		= mysqli_real_escape_string($this->db->link,md5($data['email']));
 			$password 	= mysqli_real_escape_string($this->db->link,md5($data['password']));
 
-			if ($name == "" || $address == "" || $city == "" || $country == "" || $zipcode == "" || $phone == "" || $email == "" || $password == "") {
-
-				$msg = "<span class = 'error'>Field Must Not Be Empty</span>";
-				return $msg;
-			}
-
 			$chkmailqry  = "SELECT * FROM tbl_customer WHERE email = '$email' ";
 			$chkmail 	 = $this->db->select($chkmailqry);
 			$chkphoneqry = "SELECT * FROM tbl_customer WHERE phone = '$phone' ";
 			$chkphone	 = $this->db->select($chkphoneqry);
 
-			if ($chkmail != false) {
+		
+			if ($name == "" || $address == "" || $city == "" || $country == "" || $zipcode == "" || $phone == "" || $email == "" || $password == "") {
+
+				$msg = "<span class = 'error'>Field Must Not Be Empty</span>";
+				return $msg;
+
+			}elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  				$msg = "Invalid email format";
+  				return $msg; 
+			}elseif ($chkmail != false) {
 				$msg = "<span class = 'error'>Email already exists!</span>";
-				return $msg;	
+				return $msg;
+
 			}elseif ($chkphone != false) {
 				$msg = "<span class = 'error'>Phone number already exists!</span>";
 				return $msg;
@@ -60,18 +64,24 @@ Class Customer{
 
 				$query = " INSERT INTO 
 							tbl_customer(name, address, city, country, zipcode, phone, email, password) 
-	VALUES('$name','$address','$city','$country','$zipcode','$phone','$email','$password')";
+							VALUES('$name','$address','$city','$country','$zipcode','$phone','$email','$password')";
 
-						$customerInsert = $this->db->insert($query);
+					$customerInsert = $this->db->insert($query);
 
-						if ($customerInsert) {
-							$msg	= "<span class= 'success'> Registration Successfull. </span>" ;
-							return $msg;
-						}else{
-							$msg	= "<span class= 'error'> Registration Incomplete. </span>" ;
-							return $msg;
-						}
+					if ($customerInsert) {
+						$msg	= "<span class= 'success'> Registration Successfull. </span>" ;
+						return $msg;
+					}else{
+						$msg	= "<span class= 'error'> Registration Incomplete. </span>" ;
+						return $msg;
+					}
+			
 			}
+
+
+			
+
+				
 
 
 

@@ -36,34 +36,34 @@
 					<tr>
 					<td>
 						<div>
-							<input type="text" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" />
+							<input type="text" name="name" placeholder="Name" />
 						</div>
 						
 						<div>
-							<input type="text" name="city" value="City" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'City';}"/>
+							<input type="text" name="city" placeholder="City"/>
 						</div>
 						
 						<div>
-							<input type="text" name="zipcode" value="Zipcode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Zipcode';}"/>
+							<input type="text" name="zipcode" placeholder="Zipcode"/>
 						</div>
 						<div>
-							<input type="text" name="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
+							<input type="text" name="email" placeholder="Email" />
 						</div>
 	    			 </td>
 	    			<td>
 						<div>
-							<input type="text" name="address" value="Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Address';}" />
+							<input type="text" name="address" placeholder="Address"/>
 						</div>
 		    			<div>
-							<input type="text" name="country" value="Country" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Country';}"/>
+							<input type="text" name="country" placeholder="Country"/>
 						</div>		        
 		
 			           	<div>
-			         		<input type="text" name="phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}"/>
+			         		<input type="text" name="phone" placeholder="Phone number"/>
 			          	</div>
 					  
 					  	<div>
-							<input type="text" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+							<input type="text" name="password" placeholder="Password"/>
 						</div>
 		    		</td>
 		    </tr> 
