@@ -38,8 +38,6 @@ Class Customer{
 			$password 	= mysqli_real_escape_string($this->db->link,md5($data['password']));
 			
 
-			$chkmailqry  = "SELECT * FROM tbl_customer WHERE email = '$email' ";
-			$chkmail 	 = $this->db->select($chkmailqry);
 			
 
 	/*Phone Numbers Validation (Bangladeshi Number only)*/
@@ -60,18 +58,13 @@ Class Customer{
 			$chkphoneqry = "SELECT * FROM tbl_customer WHERE phone = '$phone' ";
 			$chkphone	 = $this->db->select($chkphoneqry);
 
-	/*	Phone Validation ends	
+	/*	Phone Validation ends	*/
 
+			$chkmailqry  = "SELECT * FROM tbl_customer WHERE email = '$email' ";
+			$chkmail 	 = $this->db->select($chkmailqry);
+				
 
-invalid email check: 
-
-if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-	$msg = "Invalid email format";
-	return $msg; 
-												*/	
-
-
-			if ($name == "" || $address == "" || $city == "" || $country == "" || $zipcode == "" || $phone == "" || $email == "" || $password == "") {
+			if ($name == "" || $address == "" || $city == "" || $country == "" || $zipcode == "" || $phone == "" || $email == "" ||  $password == "") {
 
 				$msg = "<span class = 'error'>Field Must Not Be Empty</span>";
 				return $msg;
@@ -83,14 +76,16 @@ if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 			}elseif ($chkphone != false) {
 				$msg = "<span class = 'error'>Phone number already exists!</span>";
 				return $msg;
+			
 			}elseif (strlen($phone) > 10) {
 				$msg = "<span class = 'error'>Invalid Phone number!</span>";
 				return $msg;
+			
 			}else{
 			 
 					$query = " INSERT INTO 
-							tbl_customer(name, address, city, country, zipcode, phone, email, password) 
-							VALUES('$name','$address','$city','$country','$zipcode','$phone','$email','$password')";
+					tbl_customer(name, address, city, country, zipcode, phone, email, password) 
+					VALUES('$name','$address','$city','$country','$zipcode','$phone','$email','$password')";
 
 					$customerInsert = $this->db->insert($query);
 
@@ -101,14 +96,8 @@ if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 						$msg	= "<span class= 'error'> Registration Incomplete. </span>" ;
 						return $msg;
 					}
-							
-			
-			}
-
-
-			
-
-				
+									
+			}			
 
 
 
