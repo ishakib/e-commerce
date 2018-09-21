@@ -10,11 +10,12 @@
 
  		});
 
- 		$db  = new Database();
- 		$fm  = new Format();
- 		$pd  = new Product();
- 		$cat = new Category();
- 		$ct  = new Cart();
+ 		$db   = new Database();
+ 		$fm   = new Format();
+ 		$pd   = new Product();
+ 		$cat  = new Category();
+ 		$ct   = new Cart();
+ 		$cust = new Customer();
  ?>
 
  <?php

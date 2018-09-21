@@ -182,22 +182,26 @@ input[type="number"] {
 	font-family: 'Monda', sans-serif;
 	padding-bottom:.4em;
 }
+
 .register_account {
-  background: #fff none repeat scroll 0 0;
-  border: 1px solid #c0bebe;
-  border-radius: 3px;
-  float: left;
-  height: 284px;
-  padding: 20px;
-  width: 712px;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #c0bebe;
+    border-radius: 3px;
+    float: left;
+    height: 284px;
+    padding: 15px;
+    width: 765px;
+    margin-top: 1px;
+
 }
+
 .register_account form input[type="text"],.register_account form select{
 	font-size:12px;
-	color:#B3B1B1;
+	color:#B4BCD2;
 	padding:8px;
 	outline:none;
-	margin:5px 0;
-	width:340px;
+	margin:3px 0; 
+	width:360px;
 }
 .register_account form select{
 	width:360px;
@@ -1540,42 +1544,42 @@ table.tblone img {
 }
 /**** Responsive Layout ****/
 @media only screen and (max-width:1024px) {
-	.wrap{
-		width:90%;
-		padding:0 2%;
-	}
-	.search_box form input[type="text"] {
-		width: 143px;
-    }
-    .shopping_cart {
-    	width:170px;
-    }
-    .shopping_cart,.currencies, .languages,.login{
-    	margin-left:5px;
-    }
-    .wrapper-dropdown {
-    	width:50px;
-    	padding:0 0 0 5px;
-    }
-    .list_2_of_1 .button a {
-    	padding:5px 10px;
-    }
-    .heading {
-    	margin-right:2%;
-    }
-    .sort, .show {
-    	width:20%;
-    }
-    .listview_1_of_2{
-    	margin: 2.4% 0 0% 1.6%;
-    }
-    .images_1_of_4 .button{
-    	width:100%;
-    	margin-top:0.5em;
-    }
-    .register_account {
-	width:60%;
-	padding:10px;
+.wrap{
+	width:90%;
+	padding:0 2%;
+}
+.search_box form input[type="text"] {
+	width: 143px;
+}
+.shopping_cart {
+	width:170px;
+}
+.shopping_cart,.currencies, .languages,.login{
+	margin-left:5px;
+}
+.wrapper-dropdown {
+	width:50px;
+	padding:0 0 0 5px;
+}
+.list_2_of_1 .button a {
+	padding:5px 10px;
+}
+.heading {
+	margin-right:2%;
+}
+.sort, .show {
+	width:20%;
+}
+.listview_1_of_2{
+	margin: 2.4% 0 0% 1.6%;
+}
+.images_1_of_4 .button{
+	width:100%;
+	margin-top:0.5em;
+}
+.register_account {
+width: 60%;
+padding: 5px;
 }
 .register_account form input[type="text"]{
 	width:240px;
@@ -1879,14 +1883,16 @@ p.terms {
 	width:320px;
 }
 .register_account form input[type="text"].code{
-	width:15%;
+	width:20%;
 }
 .register_account form input[type="text"].number{
 	width:68%;
 }
 .login_panel input[type="text"], .login_panel input[type="password"] {
-	width: 95%;
+	width: 90%;
+
 }
+
 }
 	
 @media only screen and (max-width: 640px) {	

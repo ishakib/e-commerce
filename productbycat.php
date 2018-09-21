@@ -47,7 +47,9 @@
 				     	</span>
 				     </div>
 				</div>
-				<?php }} ?>
+				<?php }}else{
+						echo "Products of this category are out of stock";
+				}  ?>
 			</div>
     </div>
  </div>
