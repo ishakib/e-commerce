@@ -30,7 +30,7 @@
     		?>
     		<h3>Register New Account</h3>
 
-    		<form action="" method="post">
+    		<form action="login.php" method="post">
 		   		<table>
 	   				<tbody>
 					<tr>
