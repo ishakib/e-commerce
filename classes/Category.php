@@ -11,7 +11,6 @@ Class Category{
 		private $db;
 		private $fm;
 
-
 		public function __construct(){
 			
 			$this->db = new Database();
@@ -19,15 +18,11 @@ Class Category{
 		}
 
 
-
 		public function catInsert($catName){
 
 
 				$catName = $this->fm->validation($catName);
 		 
-
-				$catName = mysqli_real_escape_string($this->db->link,$catName);
-
 				if (empty($catName)) {
 					$msg	= "<span class= 'error'> Field must not be empty ! </span>";
 					return $msg;
@@ -44,10 +39,8 @@ Class Category{
 							$msg	= "<span class= 'error'> Category Not Inserted. </span>" ;
 							return $msg;
 						}
-
 						
 					}
-
 		}
 
 
@@ -69,15 +62,11 @@ Class Category{
 		}
 
 
-
 		public function catUpdate($catName,$id){
 
-
 			$catName 	= $this->fm->validation($catName);
+			$id 		= $this->fm->validation($id);
 
-			$catName 	= mysqli_real_escape_string($this->db->link,$catName);
-			$id 		= mysqli_real_escape_string($this->db->link,$id);
-			
 			if(empty($catName)){
 				$msg	= "<span class= 'error'> Field must not be empty ! </span>";
 				return $msg;
@@ -109,7 +98,6 @@ Class Category{
 		}
 
 
-
 		public function delCatById($id){
 
 			$query = " DELETE FROM tbl_category WHERE catID = '$id' ";
@@ -124,6 +112,8 @@ Class Category{
 			}
 
 		}
+
+
 		public function getCatNameById($id){
 
 			$query	= " SELECT catName FROM tbl_category WHERE catId = '$id'";

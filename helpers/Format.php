@@ -1,8 +1,23 @@
  <?php
-/**
-* Format Class
-*/
+
+		$filepath = realpath(dirname(__FILE__));
+		include_once ($filepath.'/../lib/Database.php'); 
+?>
+
+<?php
+
 Class Format{
+
+	private $db;
+
+
+	public function __construct(){
+			
+			$this->db = new Database();
+			
+	}
+
+
 	 public function formatDate($date){
 	  return date('F j, Y, g:i a', strtotime($date));
 	 }
@@ -19,6 +34,7 @@ Class Format{
 		  $data = trim($data);
 		  $data = stripcslashes($data);
 		  $data = htmlspecialchars($data);
+		  $data	= mysqli_real_escape_string($this->db->link,$data);
 		  return $data;
  	 }
 
@@ -33,4 +49,12 @@ Class Format{
 		  }
 		  return $title = ucfirst($title);
 		 }
+
+	public function phonevalidation($data){
+		$data = preg_replace("/[^0-9]/", '', $data);
+		if (strlen($data) == 11) {
+				$data = preg_replace("/^0/", '',$data);
+			}
+		return $data;
+	}
 }

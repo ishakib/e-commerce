@@ -25,9 +25,6 @@ Class Adminlogin{
 		$adminUser = $this->fm->validation($adminUser);
 		$adminPass = $this->fm->validation($adminPass);
 
-		$adminUser = mysqli_real_escape_string($this->db->link,$adminUser);
-		$adminPass = mysqli_real_escape_string($this->db->link,$adminPass);
-
 		if ($adminUser == '' | $adminPass == '') {
 			$loginmsg	= "User or Password must not be empty";
 			return $loginmsg;

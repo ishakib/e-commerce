@@ -25,9 +25,6 @@ Class Brand{
 
 
 				$brandName = $this->fm->validation($brandName);
-		 
-
-				$brandName = mysqli_real_escape_string($this->db->link,$brandName);
 
 				if (empty($brandName)) {
 					$msg	= "<span class= 'error'> Field must not be empty ! </span>";
@@ -70,14 +67,10 @@ Class Brand{
 		}
 
 
-
 		public function brandUpdate($brandName,$id){
 
-
 			$brandName 	= $this->fm->validation($brandName);
-
-			$brandName 	= mysqli_real_escape_string($this->db->link,$brandName);
-			$id 		= mysqli_real_escape_string($this->db->link,$id);
+			$id 		= $this->fm->validation($id);
 			
 			if(empty($brandName)){
 				$msg	= "<span class= 'error'> Field must not be empty ! </span>";
