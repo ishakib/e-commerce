@@ -11,13 +11,11 @@ Class Product{
 		private $db;
 		private $fm;
 
-
 		public function __construct(){
 			
 			$this->db = new Database();
 			$this->fm = new Format();
 		}
-
 
 
 		public function productInsert($data,$file){
@@ -227,7 +225,6 @@ Class Product{
 		}
 
 
-
 		public function delproductById($id){
 
 			$query = " DELETE FROM tbl_product WHERE productID = '$id' ";
@@ -243,7 +240,6 @@ Class Product{
 			}
 
 		}
-
 
 
 		public function getFeaturedProduct(){

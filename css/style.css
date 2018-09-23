@@ -46,7 +46,7 @@ body{
 
 .header_top_right {
     float: right;
-    width: 63%;
+    width: 53%;
     margin-top: 2px;
 }
 .search_box{
@@ -161,20 +161,22 @@ input[type="number"] {
 	background: #70389C;
 }
 .login {
-  background: rgba(0, 0, 0, 0) url("../images/gradient_light-1.png") repeat-x scroll 0 0;
-  border: 1px solid #cecece;
-  box-sizing: border-box;
-  color: #444;
-  display: block;
-  float: left;
-  font-size: 27px;
-  height: 38px;
-  margin-left: 10px;
-  text-align: center;
-  width: 144px;
+    background: #652c92;
+    border: 1px solid #eac6c6;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    float: left;
+    font-size: 26px;
+    height: 38px;
+    margin-left: 10px;
+    text-align: center;
+    width: 100px;
+    border-radius: 10px;
+    padding: 4px 0 0 0;
 }
 .login a {
-	color:#333;
+    color: #ffffff;
 }
 /*** Login ***/
 .register_account h3,.login_panel h3{
@@ -197,16 +199,15 @@ input[type="number"] {
 }
 
 .register_account form input[type="text"],.register_account form select{
-	font-size:12px;
-	color:#B4BCD2;
-	padding:8px;
-	outline:none;
-	margin:3px 0; 
+    font-size: 12px;
+    color: #242424;
+    padding: 8px;
+    outline: none;
+    margin: 3px 0;
+    width: 360px;
+}.register_account form select{
 	width:360px;
-}
-.register_account form select{
-	width:360px;
-	color:#666;
+	color:#B3B1B1;
 }
 .register_account form input[type="text"].code{
 	width:15%;
@@ -218,8 +219,8 @@ input[type="number"] {
 	width:100%;
 }
 .register_account p{
-	font-size:12px;
-	color:#666;
+	font-size:14px;
+	color:#B2B0B0;
 }
 .search{
 	float:left;
@@ -236,7 +237,7 @@ input[type="number"] {
     -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
 .login_panel input[type="text"],.login_panel input[type="password"]{
-	font-size:12px;
+	font-size:14px;
 	color:#B3B1B1;
 	padding:8px;
 	outline:none;

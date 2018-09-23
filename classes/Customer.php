@@ -26,7 +26,7 @@ Class Customer{
 			$address 	= $this->fm->validation($data['address']);
 			$country 	= $this->fm->validation($data['country']);
 			$phone 		= $this->fm->validation($data['phone']);						
-			$password 	= $this->fm->validation($data['password']);
+			$password 	= $this->fm->validation(md5($data['password']));
 			
 			$phone 		= $this->fm->phonevalidation($data['phone']);
 
@@ -77,9 +77,39 @@ Class Customer{
 									
 			}			
 
-
-
 		}
+
+
+		public function customerLogin($data){
+			$email 		= $this->fm->validation($data['email']);
+			$password 	= $this->fm->validation(md5($data['password']));
+
+			if (empty($email) || empty($password )) {
+				$msg	= "<span class= 'error'> Field must not be empty! </span>" ;
+						return $msg;
+			}else{
+				$query = "SELECT * FROM tbl_customer WHERE email = '$email' AND password = '$password'";
+				$result = $this->db->select($query);
+
+				if ($result != false) {
+					$value = $result->fetch_assoc();
+					Session::set("custlogin",true);
+					Session::set("custId",$value['id']);
+					Session::set("custName",$value['name']);
+					Session::set("custPhone",$value['phone']);
+					header("Location:order.php");
+				}else{
+					$msg	= "<span class= 'error'> Email or Password not matched! </span>" ;
+					return $msg;
+				}
+			}	
+		}
+
+
+		public function delCustomerCart(){
+			$query = "DELETE FROM tbl_customer WHERE sId = '$sId'";
+		}
+
 
 
 }
