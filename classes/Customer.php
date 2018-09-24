@@ -94,7 +94,7 @@ Class Customer{
 				if ($result != false) {
 					$value = $result->fetch_assoc();
 					Session::set("custlogin",true);
-					Session::set("custId",$value['id']);
+					Session::set("custId",$value['customerId']);
 					Session::set("custName",$value['name']);
 					Session::set("custPhone",$value['phone']);
 					header("Location:order.php");
@@ -106,9 +106,63 @@ Class Customer{
 		}
 
 
-		public function delCustomerCart(){
-			$query = "DELETE FROM tbl_customer WHERE sId = '$sId'";
+		public function getCustomerData($id){
+			$query	= " SELECT * FROM tbl_customer WHERE customerId = '$id'";
+			$result = $this->db->select($query);
+			return $result;
 		}
+
+
+		public function customerUpdate($data, $id){
+
+			$name 		= $this->fm->validation($data['name']);
+			$city 		= $this->fm->validation($data['city']);
+			$zipcode 	= $this->fm->validation($data['zipcode']);
+			$email 		= $this->fm->validation($data['email']);
+			$address 	= $this->fm->validation($data['address']);
+			$country 	= $this->fm->validation($data['country']);
+			$phone 		= $this->fm->validation($data['phone']);						
+			$phone 		= $this->fm->phonevalidation($data['phone']);
+
+
+			if ($name == "" || $address == "" || $city == "" || $country == "" || $zipcode == "" || $phone == "" || $email == "") {
+
+				$msg = "<span class = 'error'>Field Must Not Be Empty</span>";
+				return $msg;
+
+			}else{
+
+					$query = " 
+
+						UPDATE tbl_customer 
+						SET 
+						
+						name 	= '$name',
+						city 	= '$city',
+						zipcode = '$zipcode',
+						email 	= '$email',
+						address = '$address',
+						country = '$country',
+						phone 	= '$phone'
+						
+						WHERE
+						
+						customerId = '$id'
+
+					 ";
+
+				$updated_row = $this->db->update($query);
+
+				if ($updated_row) {
+					$msg	= "<span class= 'success'> Information Updated</span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'> Information Not Updated </span>" ;
+					return $msg;
+				}
+			}
+		}
+		
 
 
 
