@@ -118,10 +118,57 @@ Class Cart{
 			$query = "DELETE FROM tbl_cart WHERE sId = '$sId'";
 			$this->db->delete($query);
 		}
+
+		public function productOrder($custId){
+
+			$sId 	 = session_id();
+			$query	 = " SELECT * FROM 	tbl_cart WHERE sId = '$sId'";
+			$cartPro = $this->db->select($query);
+
+			while ($result = $cartPro->fetch_assoc()) {
+				$productId = $result['productId'];
+				$productName = $result['productName'];
+				$quantity = $result['quantity'];
+				$price = $result['price'] *$quantity;
+				$image = $result['image'];
+
+			$query = " INSERT INTO 
+							tbl_order(custId,productId,productName,price,quantity,image) 
+							VALUES('$custId','$productId','$productName','$price','$quantity','$image')";
+
+						$inserted_row = $this->db->insert($query);
+						
+				
+			}
+
+		}
 		
+		public function amountPayable($custId){
+			$query	 	= " SELECT price FROM	tbl_order WHERE custId= '$custId' AND date = now()";
+			$result 	= $this->db->select($query);
+			return $result;
+
+		}
 
 
-}
+		public function reciptOrder($custId){
+
+			$query	 	= " SELECT * FROM 	tbl_order WHERE custId= '$custId' ORDER BY productId DESC";
+			$orderProd 	= $this->db->select($query);
+
+			if ($orderProd) {
+					$msg	= "<span class= 'success'> Download Your Recipt </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'> Something Wrong Try again. !. </span>" ;
+					return $msg;
+				}	
+
+
+
+		}
+
+}		
 
 ?>
 

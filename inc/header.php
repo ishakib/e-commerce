@@ -30,10 +30,6 @@
 	}
 ?>
 
-
-
-
-
 <!DOCTYPE HTML>
 <head>
 <title>E-shop</title>

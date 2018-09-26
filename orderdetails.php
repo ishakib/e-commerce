@@ -7,12 +7,9 @@
 		}
 ?>
 <?php
-		if (isset($_GET['oderId']) && isset($_GET['oderId']) == 'order') {
 		  	$custId 	= Session::get("custId");
-		  	$getData 	= $ct->productOrder($custId);
-		  	$deldata 	= $ct->delCustomerCart();
-		  	header("Location:success.php");
-		}  
+		  	$getData 	= $ct->reciptOrder($custId);  	
+		
 ?>
 
 <style>
@@ -28,8 +25,13 @@
 <div class="main">
 <div class="content">
 <div class="section group">
-	<h2 style="text-align: center; margin-bottom: 5px">Payment Offline</h2>
+	<h2 style="text-align: center; margin-bottom: 5px;">Payment Offline</h2>
 				
+
+ <?php if ($getData ){
+	echo $getData ;
+} ?>
+
 	<table class="tblpayment">
 	<tr>
 		<td> <!-- Cart page -->
@@ -187,7 +189,7 @@
 	</tr>
 
 	</table>
-	<button class="button"><a href="?oderId=order">Order Now</a></button>  
+
 					
 
 </div> 	<!-- Section Group -->					
