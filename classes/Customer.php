@@ -97,7 +97,7 @@ Class Customer{
 					Session::set("custId",$value['customerId']);
 					Session::set("custName",$value['name']);
 					Session::set("custPhone",$value['phone']);
-					header("Location:order.php");
+					header("Location:index.php");
 				}else{
 					$msg	= "<span class= 'error'> Email or Password not matched! </span>" ;
 					return $msg;

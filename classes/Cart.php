@@ -144,8 +144,8 @@ Class Cart{
 		}
 		
 		public function amountPayable($custId){
-			$query	 	= " SELECT price FROM	tbl_order WHERE custId= '$custId' AND date = now()";
-			$result 	= $this->db->select($query);
+			$query	 	= " SELECT price FROM	tbl_order WHERE custId= '$custId' ";
+			$result 	= $this->db->select($query);				
 			return $result;
 
 		}
@@ -154,19 +154,11 @@ Class Cart{
 		public function reciptOrder($custId){
 
 			$query	 	= " SELECT * FROM 	tbl_order WHERE custId= '$custId' ORDER BY productId DESC";
-			$orderProd 	= $this->db->select($query);
-
-			if ($orderProd) {
-					$msg	= "<span class= 'success'> Download Your Recipt </span>" ;
-					return $msg;
-				}else{
-					$msg	= "<span class= 'error'> Something Wrong Try again. !. </span>" ;
-					return $msg;
-				}	
-
-
-
+			$result 	= $this->db->select($query);
+			return $result ;
 		}
+
+
 
 }		
 

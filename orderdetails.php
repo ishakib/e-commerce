@@ -6,11 +6,7 @@
 			header("Location:login.php");
 		}
 ?>
-<?php
-		  	$custId 	= Session::get("custId");
-		  	$getData 	= $ct->reciptOrder($custId);  	
-		
-?>
+
 
 <style>
 .tblone tr th h3{font-size: 25px; font-style: oblique;}
@@ -25,12 +21,8 @@
 <div class="main">
 <div class="content">
 <div class="section group">
-	<h2 style="text-align: center; margin-bottom: 5px;">Payment Offline</h2>
+	<h2 style="text-align: center; margin-bottom: 5px;">Order Details</h2>
 				
-
- <?php if ($getData ){
-	echo $getData ;
-} ?>
 
 	<table class="tblpayment">
 	<tr>
@@ -50,16 +42,17 @@
 					</tr>
 
 		<?php
-		$getpd = $ct->getAllCartProduct();
+			$custId 	= Session::get("custId");
+		  	$getData 	= $ct->reciptOrder($custId);
 
 			$totalprice = 0;
 			$vat = 0;
 			$subTotal = 0;
 			$gTotal = 0;
 
-		if ($getpd) {									
+		if ($getData) {									
 			$i=0;
-			while ($result = $getpd->fetch_assoc()) {	
+			while ($result = $getData->fetch_assoc()) {	
 				$i++;			
 		?>	
 					<tr>
@@ -84,7 +77,9 @@
 				</table>
 
 		<?php
-		$getData = $ct->getAllCartProduct();
+		
+		$custId 	= Session::get("custId");
+		$getData 	= $ct->amountPayable($custId);
 		if ($getData) {
 		?>
 

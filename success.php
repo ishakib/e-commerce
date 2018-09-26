@@ -23,27 +23,29 @@
    	    <div class="section group">				
 			<div class="paymentmsg">
 				<h1> Success!!!</h1>
-					<?php
-							$custId 	= Session::get("custId");
-							$amount 	= $ct->amountPayable($custId); 
-							if ($amount) {
-								$sum = 0;
-								while ($result = $amount->fetch_assoc()) {
-									$price  = $result['price'];
-									$sum 	= $sum + $price; 
-								}
-							}
-						?>
+<?php								
+	$custId 	= Session::get("custId");
+	$amount 	= $ct->amountPayable($custId);
+	if($amount){
+		$sum = 0;
+		while ($result = $amount->fetch_assoc()) {							
+			$sum  = $sum + $result['price'];			
+		}
+	}
+?> 
 			
 				<table class="tblconfirm">
 					<tr>
 						<td width="40%" style="background: #4A4248; color: #fff;">Total Payable<p>(including 10% vat)</p></td>
 						<td> BDT: 
-						<?php
-								$vat   = $sum * 0.1 ;
-						 		$total = $vat + $sum ; 			  
-								echo $total; 
-						?> /=</td>
+									<?php 
+										$vat   = $sum * 0.1;
+										$total = $sum + $vat;
+										echo $total; 										
+									?>
+									
+						/=</td>
+						
 					</tr>
 					<tr>
 						<td style="background: #4A4248; color: #fff;">Order Details</td>
