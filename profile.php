@@ -1,4 +1,10 @@
 <?php include 'inc/header.php'; ?>
+<?php
+		$login = Session::get("custlogin");  
+		if ($login == false) {
+			header("Location:login.php");
+		}
+?>
 <style>
 .tblone{border: 1px solid #d8f0f3;width: 65%;margin: 0 auto; font-size: 20px;}
 .tblone tr td{color: #000000;padding: 15px 2px 5px 10px; text-align: justify;}
@@ -8,15 +14,16 @@
 <div class="main">
     <div class="content">
    	    <div class="section group">
+		
 			<table class="tblone">
-	<?php 
+				<?php 
 
-		$id 		= Session::get('custId');
-		$getdata 	= $cust->getCustomerData($id);
+					$id 		= Session::get('custId');
+					$getdata 	= $cust->getCustomerData($id);
 
-		if ($getdata) {
-			while ($result = $getdata->fetch_assoc()) {
-	?>
+					if ($getdata) {
+						while ($result = $getdata->fetch_assoc()) {
+				?>	
 			<tr>
 				<td colspan="3" style="text-align: center;"><h2>User Profile</h2></td>				
 			</tr>
@@ -64,9 +71,9 @@
 				 				
 			</tr>
 			
-		
+		<?php } } ?>
 		</table>	
-	<?php } } ?>					
+						
 
 		</div>
 			

@@ -17,14 +17,12 @@
  		$ct   = new Cart();
  		$cust = new Customer();
  ?>
-
  <?php
  		header("Cache-Control: no-cache, must-revalidate");
   		header("Pragma: no-cache"); 
   		header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
   		header("Cache-Control: max-age=2592000");
 ?>
-
 <?php  	
 	if (isset($_GET['cid'])) {
 		$deldata = $ct->delCustomerCart();
@@ -120,7 +118,8 @@
 	<?php
 		  $cartData = $ct->getAllCartProduct();
 		  if ($cartData) { ?>
-			<li><a href="cart.php">Cart</a></li>	  	
+			<li><a href="cart.php">Cart</a></li>
+			<li><a href="payment.php">Payment</a></li>	  	
 	<?php } ?>
 		  
 
