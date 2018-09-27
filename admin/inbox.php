@@ -2,7 +2,20 @@
 <?php include 'inc/sidebar.php';?>
 <?php
 	$filepath = realpath(dirname(__FILE__));
-		include_once ($filepath.'/../classes/Cart.php');   
+		include_once ($filepath.'/../classes/Cart.php');  
+
+		$ct = new Cart();
+		$fm = new Format();
+?>
+
+<?php
+	if (isset($_GET['shiftedId'])) {
+		 $id 	= $_GET['shiftedId'];
+		 $date 	= $_GET['time'];
+		 $price = $_GET['price'];
+
+	 $shiftProduct = $ct->shiftedData($id,$date,$price);
+	}  
 ?>
         <div class="grid_10">
             <div class="box round first grid">
@@ -10,6 +23,11 @@
                 <div class="block">        
                     <table class="data display datatable" id="example">
 					<thead>
+
+				<?php 
+						if (isset($shiftProduct)) {
+						echo $shiftProduct;
+				} ?>		
 						<tr>
 							<th>Id</th>
 							<th>Date</th>
@@ -39,9 +57,9 @@
 
 							<?php if ($result['status'] == 'pending') { ?>
 								
-								<td><a href="">Pending</a></td>	
+								<td><a href="?shiftedId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Pending</a></td>	
 							<?php }else{ ?>
-								<td><a href="">Delivered</a></td>
+								<td><a href="?shiftedId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Delivered</a></td>
 							<?php } ?>
 						</tr>
 					<?php } }  ?>	

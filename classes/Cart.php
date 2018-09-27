@@ -169,11 +169,39 @@ Class Cart{
 
 		public function getOrderProduct(){
 
-			$query	 	= " SELECT * FROM tbl_order ORDER BY date ";
+			$query	 	= " SELECT * FROM tbl_order ORDER BY date DESC";
 			$result 	= $this->db->select($query);
 			return $result ;
 		}
 
+
+		public function shiftedData($id,$date,$price){
+			
+			$id 	= $this->fm->validation($id);
+			$date 	= $this->fm->validation($date);
+			$price 	= $this->fm->validation($price);
+
+
+			$query = " 
+						UPDATE tbl_order
+						SET 						
+						status = 'delivered'
+						
+						WHERE custId = '$id' AND date = '$date' AND price = '$price' ";
+
+			$updateCartQty = $this->db->update($query);		
+			 
+			if ($updateCartQty) {
+					$msg	= "<span class= 'success'>Product Shifted </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'>Product Shifted !. </span>" ;
+					return $msg;
+				}
+
+
+
+		}
 
 
 
