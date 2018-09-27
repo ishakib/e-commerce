@@ -13,6 +13,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Date</th>
+							<th>Cust. ID</th>
 							<th>Product</th>
 							<th>Quantity</th>
 							<th>Price</th>
@@ -30,6 +31,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $result['custId']; ?></td>
 							<td><?php echo $result['date']; ?></td>
+							<td><?php echo $result['custId']; ?></td>
 							<td><?php echo $result['productName']; ?></td>
 							<td><?php echo $result['quantity']; ?></td>
 							<td><?php echo $result['price']; ?></td>
