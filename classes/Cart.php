@@ -159,6 +159,23 @@ Class Cart{
 		}
 
 
+		public function checkOrder($custId){
+
+			$query	 	= " SELECT * FROM 	tbl_order WHERE custId= '$custId' ORDER BY productId DESC";
+			$result 	= $this->db->select($query);
+			return $result ;
+		}
+
+
+		public function getOrderProduct(){
+
+			$query	 	= " SELECT * FROM tbl_order ORDER BY date ";
+			$result 	= $this->db->select($query);
+			return $result ;
+		}
+
+
+
 
 }		
 

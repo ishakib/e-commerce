@@ -117,10 +117,15 @@
 			<li><a href="cart.php">Cart</a></li>
 			<li><a href="payment.php">Payment</a></li>	  	
 	<?php } ?>
-		  
-
-	  
 	
+	<?php
+		$custId   = Session::get('custId');
+		$chkorder = $ct->checkOrder($custId);
+		if ($chkorder) { ?>
+			<li><a href="orderdetails.php">Order</a></li>
+				  	
+	<?php } ?>
+		  
 
 	<?php
 		$login = Session::get("custlogin");

@@ -184,26 +184,22 @@ input[type="number"] {
 	color: #6C6C6C;
 	font-family: 'Monda', sans-serif;
 	padding-bottom:.4em;
-}
-
-.register_account {
+}.register_account {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #c0bebe;
     border-radius: 3px;
     float: left;
-    height: 284px;
-    padding: 15px;
+    height: 261px;
+    padding: 20px;
     width: 765px;
     margin-top: 1px;
-
-}
-
-.register_account form input[type="text"],.register_account form select{
-    font-size: 12px;
+    margin-bottom: 19px;
+}.register_account form input[type="text"], .register_account form select {
+    font-size: 23px;
     color: #242424;
     padding: 8px;
     outline: none;
-    margin: 3px 0;
+    margin: 1px 1px;
     width: 360px;
 }.register_account form select{
 	width:360px;
@@ -236,39 +232,22 @@ input[type="number"] {
 	border:1px solid #C0BEBE;
     -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
-.login_panel input[type="text"],.login_panel input[type="password"]{
-	font-size:14px;
-	color:#B3B1B1;
-	padding:8px;
-	outline:none;
-	margin:6px 0;
-	width:92%;
+.login_panel input[type="text"], .login_panel input[type="password"] {
+    font-size: 14px;
+    color: #000000;
+    padding: 8px;
+    outline: none;
+    margin: 6px 0;
+    width: 92%;
 }
 .login_panel form{
 	margin:15px 0;
 }
 .login_panel p{
-	font-size:12px;
-	color:#888;
+	font-size:px;
+	color:#000000;
 }
-p.terms{
-	float:left;
-	font-size:12px;
-	padding:15px 0 0 15px;
-}
-p.terms a,p.note a{
-	text-decoration:underline;
-	color:#7C2DC5;
-}
-p.terms a:hover,p.note a:hover{
-	text-decoration:none;
-}
-p.note{
-	font-size:15px;
-	color:#666;
-	padding:5px;
-	line-height:1.6em;
-}
+
 .buttons button,.search button.grey{
 	    padding:10px 15px;
 	    font-size:15px;

@@ -9,7 +9,8 @@
 
 
 <style>
-.tblone tr th h3{font-size: 25px; font-style: oblique;}
+.tblone tr th{text-align: justify;}
+.tblone tr th h3{font-size: 25px; font-style: oblique; text-align: center;}
 .tblpayment{ width: 100%; border: 1px solid #ddd;}
 .tblpayment tr{padding: 8px;border: 1px solid #ddd; }
 .tblpayment tr td{text-align: justify;padding: 8px; }
@@ -30,7 +31,7 @@
 			<div class="divone"> 		
 				<table class="tblone">
 					<tr>
-						<th colspan="5"><h3>Cart Item</h3></th>
+						<th colspan="8"><h3>Cart Item</h3></th>
 					</tr>
 						
 					<tr>
@@ -38,7 +39,10 @@
 						<th>Product Name</th>
 						<th>Price</th>
 						<th>Qty</th>
-						<th>Total Price</th>	
+						<th>Total Price</th>
+						<th>Order Date</th>
+						<th>Status</th>
+						<th>Action</th>	
 					</tr>
 
 		<?php
@@ -65,6 +69,25 @@
 									echo $totalprice; 
 								 ?>							 	
 						</td>
+						<td><?php echo $fm->formatDate($result['date']) ; ?></td>
+
+						<?php
+							if ($result['status'] == 'pending') {
+						?>
+							<td>Pending</td>
+						<?php }else{ ?>
+							<td>Delivered</td>
+						<?php } ?>	
+						
+
+						<?php
+							if ($result['status'] == 'pending') {
+						?>	
+						<td>N/A</td>  	
+						<?php }else{ ?>
+						<td>Delivered</td>	
+						<?php } ?>
+						
 						
 					</tr>
 
@@ -115,71 +138,6 @@
 			</div>			
 		</td>
 	
-
-		<td><!-- profile page -->			
-
-			<div class="divtwo" >
-			<table class="tblone">	
-		<?php 
-
-		$id 		= Session::get('custId');
-		$getdata 	= $cust->getCustomerData($id);
-
-		if ($getdata) {
-			while ($result = $getdata->fetch_assoc()) {
-		?>			
-				<tr>
-					<th colspan="3"><h3>User Profile</h3></th>				
-				</tr>
-				<tr>
-					<td width="15%">Name</td>
-					<td width="5%">:</td>
-					<td><p><?php echo $result['name']; ?> </p></td>				
-				</tr>
-				<tr>
-					<td>City</td>
-					<td>:</td>
-					<td> <p><?php echo $result['city']; ?></p></td>				
-				</tr>
-				<tr>
-					<td>Zipcode</td>
-					<td>:</td>
-					<td> <p><?php echo $result['zipcode']; ?> </p></td>				
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td>:</td>
-					<td><p><?php echo $result['email']; ?></p></td>				
-				</tr>
-				<tr>
-					<td>Address</td>
-					<td>:</td>
-					<td><p><?php echo $result['address']; ?></p></td>				
-				</tr>
-				<tr>
-					<td>Country</td>
-					<td>:</td>
-					<td><p><?php echo $result['country']; ?></p></td>				
-				</tr>
-				<tr>
-					<td>Phone</td>
-					<td>:</td>
-					<td><p><?php echo $result['phone']; ?></p></td>				
-				</tr>
-				<tr>
-					<td colspan="3" class="buttonedit" style="text-align: center;">
-						<button style=" padding: 8px;" >
-							<a style="font-size: 20px;" href="updateprofile.php">Edit Profile</a>
-						</button>
-					</td>
-					 				
-				</tr>
-				
-				<?php } } ?>
-			</table>	
-			</div>
-
-		</td>
 						
 	</tr>
 
