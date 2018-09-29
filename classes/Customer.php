@@ -87,7 +87,7 @@ Class Customer{
 			if (empty($email) || empty($password )) {
 				$msg	= "<span class= 'error'> Field must not be empty! </span>" ;
 						return $msg;
-			}else{
+			}elseif (filter_var($email, FILTER_VALIDATE_EMAIL) != false){
 				$query = "SELECT * FROM tbl_customer WHERE email = '$email' AND password = '$password'";
 				$result = $this->db->select($query);
 
@@ -102,7 +102,28 @@ Class Customer{
 					$msg	= "<span class= 'error'> Email or Password not matched! </span>" ;
 					return $msg;
 				}
-			}	
+			}elseif (is_numeric($data['email'])) {
+				
+			
+				$phone 		= $this->fm->phonevalidation($data['email']);
+				$query = "SELECT * FROM tbl_customer WHERE phone = '$phone' AND password = '$password'";
+				$result = $this->db->select($query);
+
+				if ($result != false) {
+					$value = $result->fetch_assoc();
+					Session::set("custlogin",true);
+					Session::set("custId",$value['customerId']);
+					Session::set("custName",$value['name']);
+					Session::set("custPhone",$value['phone']);
+					header("Location:index.php");
+				}
+				else{
+					$msg	= "<span class= 'error'> Phonne Number or Password not matched! </span>" ;
+					return $msg;
+				}	
+			}else{
+				header("Location:404.php");
+			}
 		}
 
 
@@ -163,6 +184,51 @@ Class Customer{
 			}
 		}
 		
+
+
+		public function chkEmailAvlbl($email){
+			
+			$email 	= $this->fm->validation('email');
+
+			$query	= " SELECT * FROM tbl_customer WHERE email = '$email'";
+			$result = $this->db->select($query);
+			
+			if ($email == "") {
+				echo "<span class= 'error'> Please enter your email </span>" ;
+				exit();
+				
+			}elseif ($result) {
+				echo "<span class= 'error'><b>$email</b> is not available.</span>" ;
+				exit();																																				
+			}else{
+				echo "<span class= 'success'><b>$email</b> is available.</span>" ;
+			}
+		}
+
+
+		public function chkPhoneAvlbl($phone){
+			
+			$phone 	= $this->fm->phonevalidation('phone');
+
+			$query	= " SELECT * FROM tbl_customer WHERE phone = '$phone'";
+			$result = $this->db->select($query);
+			
+			if ($phone == "") {
+				
+				echo "<span class= 'error'> Please enter your phone </span>" ;
+				exit();
+
+			}elseif ($result ) {
+
+				echo "<span class= 'error'><b>$phone</b> is not available.</span>" ;
+				exit();
+			
+			}else{
+				
+				echo "<span class= 'success'><b>$phone</b> is available.</span>" ;
+				exit();
+			}
+		}
 
 
 

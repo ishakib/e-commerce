@@ -3,14 +3,14 @@
 <?php
 		$login = Session::get("custlogin");  
 		if ($login == true) {
-			header("Location:order.php");
+			header("Location:index.php");
 		}
 ?>
 
 <?php  
-	if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD']) {   
-        $custLogin = $cust->customerLogin($_POST);
-    }
+		if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD']) {   
+	        $custLogin = $cust->customerLogin($_POST);
+	    }
 ?>
 
  <div class="main">
@@ -38,6 +38,8 @@
     }
 
 ?>
+	
+	
 
  	<div class="register_account">
     		<?php  
@@ -46,8 +48,12 @@
     			}
     		?>
     		<h3>Register New Account</h3>
+    			<div id="emailcheck"></div>
 
-    		<form action="login.php" method="post">
+    		<form action="" method="post">
+
+    				
+
 		   		<table>
 	   				<tbody>
 					<tr>
@@ -63,11 +69,15 @@
 						<div>
 							<input type="text" name="zipcode" placeholder="Zipcode"/>
 						</div>
+ 						
 						<div>
-							<input type="text" name="email" placeholder="Email" />
+							<input type="text" name="email" id="email" placeholder="Enter Your Email" />
+							<div id="emailcheck"></div>
 						</div>
 	    			 </td>
-	    			<td>
+	    			
+
+	    			 <td>
 						<div>
 							<input type="text" name="address" placeholder="Address"/>
 						</div>
@@ -76,7 +86,8 @@
 						</div>		        
 		
 			           	<div>
-			         		<input type="text" name="phone" placeholder="Phone number"/>
+			         		<input type="text" name="phone" id="phone" placeholder="Phone number"/>
+			          		<div id="phonecheck"></div>
 			          	</div>
 					  
 					  	<div>
@@ -87,7 +98,8 @@
 		    </tbody></table> 
 		 
 		   		<div class="buttons"><div><button class="grey" name="register">Create Account</button></div></div>
-                    </div>		  		   
+            </div>		  
+                       
 		    </form>
     	</div>  	
        <div class="clear"></div>

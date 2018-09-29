@@ -1,6 +1,43 @@
 $(window).load(function(){
 	
-	// We are listening to the window.load event, so we can be sure
+//email availibilibilty
+		$('#email').blur(function(){
+
+		var email = $(this).val();
+				$.ajax({
+					url:"check/checkuser.php",
+					method:"POST",
+					data:{email:email},
+					dataType: "text",
+					success:function(data){
+						$('#emailcheck').html(data);
+					}
+
+				});
+
+		});
+
+
+
+//Phone Number availibilibilty
+
+		$('#phone').blur(function(){
+
+		var phone = $(this).val();
+				$.ajax({
+					url:"check/checkuser.php",
+					method:"POST",
+					data:{phone:phone},
+					dataType: "text",
+					success:function(data){
+						$('#phonecheck').html(data);
+					}
+
+				});
+
+		});
+
+		// We are listening to the window.load event, so we can be sure
 	// that the images in the slideshow are loaded properly.
 
 
@@ -126,5 +163,9 @@ $(window).load(function(){
 		// Inserting the canvas in the DOM, before the image:
 		image.parentNode.insertBefore(canvas,image);
 	}
+
+
+
+
 	
 });
