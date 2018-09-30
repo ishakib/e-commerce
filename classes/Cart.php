@@ -181,7 +181,6 @@ Class Cart{
 			$date 	= $this->fm->validation($date);
 			$price 	= $this->fm->validation($price);
 
-
 			$query = " 
 						UPDATE tbl_order
 						SET 						
@@ -189,16 +188,61 @@ Class Cart{
 						
 						WHERE custId = '$id' AND date = '$date' AND price = '$price' ";
 
-			$updateCartQty = $this->db->update($query);		
+			$orderStatus = $this->db->update($query);		
 			 
-			if ($updateCartQty) {
-					$msg	= "<span class= 'success'>Product Shifted </span>" ;
+			if ($orderStatus) {
+					$msg	= "<span class= 'success'>Product Shipment Completed !</span>" ;
 					return $msg;
 				}else{
-					$msg	= "<span class= 'error'>Product Shifted !. </span>" ;
+					$msg	= "<span class= 'error'>Product Shipment Pending !. </span>" ;
 					return $msg;
 				}
 
+		}
+
+
+		public function pendingData($id,$date,$price){
+
+			$id 	= $this->fm->validation($id);
+			$date 	= $this->fm->validation($date);
+			$price 	= $this->fm->validation($price);
+
+			$query = " 
+						UPDATE tbl_order
+						SET 						
+						status = 'pending'
+						
+						WHERE custId = '$id' AND date = '$date' AND price = '$price' ";
+
+			$orderStatus = $this->db->update($query);		
+			 
+			if ($orderStatus) {
+					$msg	= "<span class= 'success'>Product Shipment Pending </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'>Product Shipment Completed !. </span>" ;
+					return $msg;
+				}
+		}
+
+
+		public function removeShiftedProduct($id,$date,$price){
+
+			$id 	= $this->fm->validation($id);
+			$date 	= $this->fm->validation($date);
+			$price 	= $this->fm->validation($price);
+
+			$query = " DELETE FROM tbl_order WHERE custId = '$id' AND date = '$date' AND price = '$price' ";
+
+			$removeProduct = $this->db->update($query);		
+			 
+			if ($removeProduct) {
+					$msg	= "<span class= 'success'>Product Removed Successfully </span>" ;
+					return $msg;
+				}else{
+					$msg	= "<span class= 'error'>Product Not Removed !. </span>" ;
+					return $msg;
+				}
 
 
 		}

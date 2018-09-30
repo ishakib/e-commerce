@@ -20,6 +20,7 @@
     			if (isset($custLogin)) {
     				echo $custLogin;
     			}
+    			
     		?>
 
         	<h3>Existing Customers</h3>
@@ -48,6 +49,7 @@
     			}
     		?>
     		<h3>Register New Account</h3>
+    			
     			<div id="emailcheck"></div>
 
     		<form action="" method="post">
@@ -86,7 +88,7 @@
 						</div>		        
 		
 			           	<div>
-			         		<input type="text" name="phone" id="phone" placeholder="Phone number"/>
+			         		<input type="text" name="phone" placeholder="Phone number"/>
 			          		<div id="phonecheck"></div>
 			          	</div>
 					  

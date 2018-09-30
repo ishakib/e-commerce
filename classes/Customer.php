@@ -192,17 +192,17 @@ Class Customer{
 
 			$query	= " SELECT * FROM tbl_customer WHERE email = '$email'";
 			$result = $this->db->select($query);
+			echo $result;
 			
 			if ($email == "") {
-				echo "<span class= 'error'> Please enter your email </span>" ;
-				exit();
-				
-			}elseif ($result) {
-				echo "<span class= 'error'><b>$email</b> is not available.</span>" ;
-				exit();																																				
-			}else{
+				echo "<span class= 'error'> Email Field Must Not Be Empty!! </span>" ;				
+			}/*elseif($result == $email ) {
+				echo "<span class= 'error'><b>$email</b> is not available.</span>";
+			}elseif($result != $email ){
 				echo "<span class= 'success'><b>$email</b> is available.</span>" ;
 			}
+			*/
+			
 		}
 
 
@@ -218,7 +218,7 @@ Class Customer{
 				echo "<span class= 'error'> Please enter your phone </span>" ;
 				exit();
 
-			}elseif ($result ) {
+			}elseif ($result) {
 
 				echo "<span class= 'error'><b>$phone</b> is not available.</span>" ;
 				exit();

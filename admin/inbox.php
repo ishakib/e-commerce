@@ -13,9 +13,28 @@
 		 $id 	= $_GET['shiftedId'];
 		 $date 	= $_GET['time'];
 		 $price = $_GET['price'];
+		$shiftProduct = $ct->shiftedData($id,$date,$price);
+	}
+?>
 
-	 $shiftProduct = $ct->shiftedData($id,$date,$price);
-	}  
+<?php  
+	if (isset($_GET['pendingId'])) {
+	  	$id 	= $_GET['pendingId'];
+		$date 	= $_GET['time'];
+		$price 	= $_GET['price'];
+
+		$pendingProduct = $ct->pendingData($id,$date,$price);
+	 }  
+?>
+
+<?php  
+	if (isset($_GET['delproId'])) {
+	  	$id 	= $_GET['delproId'];
+		$date 	= $_GET['time'];
+		$price 	= $_GET['price'];
+
+		$removeProd = $ct->removeShiftedProduct($id,$date,$price);
+	 }  
 ?>
         <div class="grid_10">
             <div class="box round first grid">
@@ -26,8 +45,14 @@
 
 				<?php 
 						if (isset($shiftProduct)) {
-						echo $shiftProduct;
-				} ?>		
+							echo $shiftProduct;
+						}	
+				 ?>
+				<?php
+						if (isset($pendingProduct)) {
+							echo $pendingProduct;
+						}  
+				?>		
 						<tr>
 							<th>Id</th>
 							<th>Date</th>
@@ -36,6 +61,7 @@
 							<th>Quantity</th>
 							<th>Price</th>
 							<th>Address</th>
+							<th>Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -55,19 +81,34 @@
 							<td><?php echo $result['price']; ?></td>
 							<td><a href="customer.php?custId=<?php echo $result['custId'];?>">View Details</a></td>
 
-							<?php if ($result['status'] == 'pending') { ?>
+							
+						<?php if ($result['status'] == 'pending') { ?>
+							
+							<td><a href="?shiftedId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Pending</a></td>	
+						<?php } ?>
+
+						<?php if ($result['status'] == 'delivered'){ ?>
+							<td><a href="?pendingId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Delivered</a></td>
+						<?php } ?>
+
+						
+					
+							<td><a onclick ="return confirm('Are you sure to delete!')" href="?delproId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Remove Item</a></td>	
 								
-								<td><a href="?shiftedId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Pending</a></td>	
-							<?php }else{ ?>
-								<td><a href="?shiftedId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Delivered</a></td>
-							<?php } ?>
+							</td>
+ 					
+
 						</tr>
+					
+
 					<?php } }  ?>	
+
 					</tbody>
 				</table>
                </div>
             </div>
         </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         setupLeftMenu();
@@ -76,4 +117,5 @@
         setSidebarHeight();
     });
 </script>
+
 <?php include 'inc/footer.php';?>
