@@ -9,6 +9,8 @@
   header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
   header("Cache-Control: max-age=2592000");
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,13 +55,28 @@
 					<h1>Admin Panel</h1>
 		
 				</div>
+
+               
                 <div class="floatright">
                     <div class="floatleft">
                         <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
+                    
+                <?php
+                        if (isset($_GET['action']) && $_GET['action'] == "logout" ) {
+                             Session::destroy();
+                          }  
+                ?>
+
+
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                            <li>Hello Admin</li>
-                            <li><a href="#">Logout</a></li>
+
+                       
+                        <li>Hello <?php echo Session::get('adminName'); ?></li>
+
+                 
+                        <a href="?action=logout">Logout</a>
+ 
                         </ul>
                     </div>
                 </div>
@@ -71,7 +88,7 @@
         </div>
         <div class="grid_12">
             <ul class="nav main">
-                <li class="ic-dashboard"><a href="index.php"><span>Dashboard</span></a> </li>
+                <li class="ic-dashboard"><a href="dashboard.php"><span>Dashboard</span></a> </li>
                 <li class="ic-form-style"><a href=""><span>User Profile</span></a></li>
 				<li class="ic-typography"><a href="changepassword.php"><span>Change Password</span></a></li>
 				<li class="ic-grid-tables"><a href="inbox.php"><span>Inbox</span></a></li>

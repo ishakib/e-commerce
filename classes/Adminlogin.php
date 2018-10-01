@@ -20,34 +20,42 @@ Class Adminlogin{
 		$this->fm = new Format();
 	}
 
-	public function adminlogin($adminUser,$adminPass){
+	public function adminLogin($data){
 
-		$adminUser = $this->fm->validation($adminUser);
-		$adminPass = $this->fm->validation($adminPass);
+		$adminUser = $this->fm->validation($data['adminUser']);
+		$adminPass = $this->fm->validation(md5($data['adminPass']));
 
-		if ($adminUser == '' | $adminPass == '') {
-			$loginmsg	= "User or Password must not be empty";
-			return $loginmsg;
+		if ($adminUser == "" || $adminPass == "" ) {
+				$msg	= "User or Password must not be empty!";
+				return $msg;
 		}else{
+			
+				$query	= " SELECT * FROM tbl_admin WHERE 	adminUser = '$adminUser' AND adminPass = '$adminPass'";
 
-			$query	= " SELECT * FROM tbl_admin WHERE 	adminUser = '$adminUser' AND adminPass = '$adminPass'";
-
-			$result = $this->db->select($query);
+				$result = $this->db->select($query);
+				
 			if ($result != false) {
-				$value = $result->fetch_assoc();
-				Session::set("login",true);
+				$value = $result->fetch_assoc();			
+				Session::set("adminlogin",true);
 				Session::set("adminId",$value['adminId']);
 				Session::set("adminUser",$value['adminUser']);
-				Session::set("adminName",$value['adminName']);
+				Session::set("adminName",$value['adminName']);			
 				header("Location:dashboard.php"); 
-			}else{
-				$loginmsg	= "User and Password not matched !";
-				return $loginmsg;
-			}
 
+			}else{
+				$msg	= "User and Password not matched !";
+				return $msg;
+			}
 		}
 
+
+
 	}
+
+
+	
+
+
 
 }
 

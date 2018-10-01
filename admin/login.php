@@ -1,18 +1,22 @@
 <?php include '../classes/Adminlogin.php';?>
 
+<?php  
+ 		$al = new Adminlogin();
 
-<?php 
-		$al = new Adminlogin();
-		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$adminUser	= $_POST['adminUser'];
-			$adminPass	= $_POST['adminPass'];
+ 		if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD']) {   
+	         $loginChk  = $al->adminLogin($_POST);
+	    }
 
-			$loginchk	= $al->adminlogin($adminUser,$adminPass);
-		}
 
- ?>
+		/*if ($_SERVER['REQUEST_METHOD'] == 'POST') {   
+		        
+		        $adminUser = $_POST['adminUser'];
+		        $adminPass = md5($_POST['adminPass']);
+
+		        $loginChk  = $al->adminLogin($adminUser,$adminPass);
+	    }*/
+?>
 	
-
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -20,18 +24,23 @@
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" />
 </head>
 <body>
+
+<style>
+.buttons{}
+.buttons button{ width: 70px; min-height: 40px; font-size: 20px;} 
+</style>	
 <div class="container">
 	<section id="content">
 		<form action="login.php" method="post">
+
 			<h1>Admin Login</h1>
 
 			<span style="color: red; font-size: 18px;">
 				
 				<?php
-						if (isset($loginchk)) {
-							echo $loginchk;	
+						if (isset($loginChk)) {
+							echo $loginChk;	
 						}
-
 				 ?>
 
 			</span>
@@ -42,13 +51,10 @@
 			<div>
 				<input type="password" placeholder="Password" name="adminPass"/>
 			</div>
-			<div>
-				<input type="submit" value="Log in" />
-			</div>
+			<div class="buttons"><div><button class="grey" name= "login">Login</button></div></div>
+			
 		</form><!-- form -->
-		<div class="button">
-			<a href="#">Training with live project</a>
-		</div><!-- button -->
+		
 	</section><!-- content -->
 </div><!-- container -->
 </body>

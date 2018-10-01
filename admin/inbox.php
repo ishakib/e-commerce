@@ -89,9 +89,7 @@
 
 						<?php if ($result['status'] == 'delivered'){ ?>
 							<td><a href="?pendingId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Delivered</a></td>
-						<?php } ?>
-
-						
+						<?php } ?>			
 					
 							<td><a onclick ="return confirm('Are you sure to delete!')" href="?delproId=<?php echo $result['custId'];?>&price=<?php echo $result['price'];?>&time=<?php echo $result['date'];?>">Remove Item</a></td>	
 								
