@@ -3,18 +3,13 @@
 <?php  
  		$al = new Adminlogin();
 
- 		if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD']) {   
-	         $loginChk  = $al->adminLogin($_POST);
-	    }
-
-
-		/*if ($_SERVER['REQUEST_METHOD'] == 'POST') {   
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {   
 		        
 		        $adminUser = $_POST['adminUser'];
-		        $adminPass = md5($_POST['adminPass']);
-
+		        $adminPass = $_POST['adminPass'];
+		        
 		        $loginChk  = $al->adminLogin($adminUser,$adminPass);
-	    }*/
+	    }
 ?>
 	
 <!DOCTYPE html>
@@ -25,10 +20,6 @@
 </head>
 <body>
 
-<style>
-.buttons{}
-.buttons button{ width: 70px; min-height: 40px; font-size: 20px;} 
-</style>	
 <div class="container">
 	<section id="content">
 		<form action="login.php" method="post">
@@ -51,7 +42,9 @@
 			<div>
 				<input type="password" placeholder="Password" name="adminPass"/>
 			</div>
-			<div class="buttons"><div><button class="grey" name= "login">Login</button></div></div>
+			<div>
+				<input type="submit"  value="Login"/>
+			</div>
 			
 		</form><!-- form -->
 		

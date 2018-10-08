@@ -5,7 +5,7 @@
 		include_once ($filepath.'/../lib/Database.php'); 
 		include_once ($filepath.'/../helpers/Format.php');
 ?>
-
+ 
 <?php  
 
 Class Adminlogin{
@@ -20,35 +20,37 @@ Class Adminlogin{
 		$this->fm = new Format();
 	}
 
-	public function adminLogin($data){
+	public function adminLogin($adminUser,$adminPass){
 
-		$adminUser = $this->fm->validation($data['adminUser']);
-		$adminPass = $this->fm->validation(md5($data['adminPass']));
+			$adminUser = $this->fm->validation($adminUser);
+			$adminPass = $this->fm->validation(md5($adminPass));
 
 		if ($adminUser == "" || $adminPass == "" ) {
 				$msg	= "User or Password must not be empty!";
 				return $msg;
 		}else{
 			
-				$query	= " SELECT * FROM tbl_admin WHERE 	adminUser = '$adminUser' AND adminPass = '$adminPass'";
+	$query	= " SELECT * FROM tbl_admin WHERE 	adminUser = '$adminUser' AND adminPass = '$adminPass'";
 
 				$result = $this->db->select($query);
 				
 			if ($result != false) {
-				$value = $result->fetch_assoc();			
-				Session::set("adminlogin",true);
-				Session::set("adminId",$value['adminId']);
-				Session::set("adminUser",$value['adminUser']);
-				Session::set("adminName",$value['adminName']);			
-				header("Location:dashboard.php"); 
+					$value = $result->fetch_assoc();			
+					Session::set("adminlogin", true);
+					Session::set("adminId", $value['adminId']);
+					Session::set("adminUser", $value['adminUser']);
+					Session::set("adminName", $value['adminName']);	
+
+					header("Location:dashboard.php"); 
 
 			}else{
-				$msg	= "User and Password not matched !";
-				return $msg;
+				
+					$msg	= "User and Password not matched !"; 
+					return $msg;
+
+					
 			}
 		}
-
-
 
 	}
 

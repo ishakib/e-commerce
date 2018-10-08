@@ -93,10 +93,10 @@
                 </tr>
 				<tr>
                     <td>
-                        <label>Price</label>
+                        <label>Price BDT:</label>
                     </td>
                     <td>
-                        $ <input type="text" name="price" placeholder="Enter Price..." class="medium" />
+                         <input type="text" name="price" placeholder="Enter Price..." class="medium"/>
                     </td>
                 </tr>
             
